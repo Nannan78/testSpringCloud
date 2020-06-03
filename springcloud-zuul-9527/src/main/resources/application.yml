@@ -1,0 +1,23 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name:springcloud-zuul
+eureka:
+  client:
+    server-url:
+      defaultZone:http://localhost:7001/eureka/,http://localhost:7003/eureka/,http://localhost:7002/eureka/
+  instance:
+    instance-id: zuul9527
+    prefer-ip-address: true
+
+info:
+  app.name: nan-springcloud
+  company.name: blog.nanstudy.com
+zuul:
+  routes:
+    mydept.serviceId: springcloud-provider-dept
+    mydept.path: /mydept/** #将springcloud-provider-dept替换为mydept
+  ignored-services: springcloud-provider-dept #禁用springcloud-provider-dept
+  prefix: /nan #路径前还需要加个/nan
